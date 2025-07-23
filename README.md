@@ -26,9 +26,9 @@ This project is a FastAPI-based backend for a Recipe and Meal Planning Helper, d
 1. Clone the Repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/LoisaKitakaya/fastapi_backend.git
 
-cd <repository-directory>
+cd fastapi_backend
 ```
 
 2. Create a Virtual Environment:
@@ -82,9 +82,9 @@ Expected response:
 1. Clone the Repository (if not already done):
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/LoisaKitakaya/fastapi_backend.git
 
-cd <repository-directory>
+cd fastapi_backend
 ```
 
 2. Set Up Environment Variables:

@@ -2,6 +2,7 @@ from typing import List
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
 from services.gemini import get_gemini_response
+from fastapi.middleware.cors import CORSMiddleware
 
 # App initialization
 
@@ -9,6 +10,18 @@ app = FastAPI(
     title="Recipe and Meal Planning API",
     description="API for generating recipes and meal plans using Gemini AI",
     version="1.0.0",
+)
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

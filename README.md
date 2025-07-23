@@ -97,19 +97,13 @@ GEMINI_API_KEY=your_api_key
 # Replace your_api_key with your Gemini AI API key.
 ```
 
-3. Build the Docker Image:
+3. Run with Docker Compose:
 
 ```bash
-docker build -t recipe-api .
+docker-compose up -d
 ```
 
-4. Run the Docker Container:
-
-```bash
-docker run -d -p 8000:8000 --env-file .env recipe-api
-```
-
-5. Access the API:
+4. Access the API:
 
    - Health check: Open http://0.0.0.0:8000/ or use:
 
@@ -177,6 +171,7 @@ curl -X POST "http://0.0.0.0:8000/api/query" -H "Content-Type: application/json"
 │ └── gemini.py
 ├── .env
 ├── .gitignore
+├── docker-compose.yml
 ├── Dockerfile
 ├── main.py
 ├── README.md

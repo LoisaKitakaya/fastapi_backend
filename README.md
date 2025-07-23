@@ -172,11 +172,13 @@ curl -X POST "http://0.0.0.0:8000/api/query" -H "Content-Type: application/json"
 
 ```plain
 .
-├── main.py # FastAPI application with endpoints
 ├── services/
-│ └── gemini.py # Gemini AI integration logic
-├── requirements.txt # Python dependencies
-├── Dockerfile # Docker configuration
-├── .env # Environment variables (not committed)
-└── README.md # Project documentation
+  ├── __init__.py
+│ └── gemini.py
+├── .env
+├── .gitignore
+├── Dockerfile
+├── main.py
+├── README.md
+└── requirements.txt
 ```

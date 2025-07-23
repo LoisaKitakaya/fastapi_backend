@@ -6,27 +6,18 @@ This project is a FastAPI-based backend for a Recipe and Meal Planning Helper, d
 
 ### Features
 
-- **Health Check Endpoint**: GET / returns a status message to confirm the API is running.
-- **Query Endpoint**: POST /api/query accepts a user query (e.g., "What can I cook with chicken, rice, and broccoli?") and returns a structured recipe response.
-- **Gemini AI Integration**: Uses gemini-1.5-flash to generate recipe data in JSON format.
+- **Health Check Endpoint**: `GET /` returns a status message to confirm the API is running.
+- **Query Endpoint**: `POST /api/query` accepts a user query (e.g., "What can I cook with chicken, rice, and broccoli?") and returns a structured recipe response.
+- **Gemini AI Integration**: Uses `gemini-2.0-flash-001` to generate recipe data in JSON format.
 - **Pydantic Validation**: Ensures structured responses with a nested Details model for recipe details.
 - **Docker Support**: Containerized setup for consistent deployment.
-
-### Tech Stack
-
-- **Backend**: Python 3.13, FastAPI
-  LLM Integration: Google Gemini AI (gemini-1.5-flash, free tier)
-- **Validation**: Pydantic v2
-  Environment Management: python-dotenv
-- **Server**: Uvicorn
-- **Containerization**: Docker (based on python:3.13-slim-bookworm)
 
 ### Prerequisites
 
 - Python 3.13+ (for local setup)
 - Docker (for containerized setup)
 - A Google Gemini AI API key (free tier) from Google AI Studio
-- A .env file with GEMINI_API_KEY=your_api_key
+- A .env file with: `GEMINI_API_KEY=your_api_key`
 
 ### Setup Instructions
 
@@ -67,19 +58,17 @@ GEMINI_API_KEY=your_api_key
 5. Run the Application:
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-
-# The --reload flag enables auto-reload for development.
+fastapi dev main:app
 ```
 
 6. Access the API:
 
-   - Health check: Open http://localhost:8000/ in a browser or use:
+   - Health check: Open http://127.0.0.1:8000/ in a browser or use:
 
 ```bash
-curl http://localhost:8000/
+curl http://127.0.0.1:8000/
 
-# NOTE: Open http://localhost:8000/docs for interactive API documentation.
+# Open http://127.0.0.1:8000/docs for interactive API documentation.
 ```
 
 Expected response:
@@ -122,12 +111,12 @@ docker run -d -p 8000:8000 --env-file .env recipe-api
 
 5. Access the API:
 
-   - Health check: Open http://localhost:8000/ or use:
+   - Health check: Open http://0.0.0.0:8000/ or use:
 
 ```bash
-curl http://localhost:8000/
+curl http://0.0.0.0:8000/
 
-# Swagger UI: Open http://localhost:8000/docs.
+# Swagger UI: Open http://0.0.0.0:8000/docs.
 ```
 
 Expected response:
@@ -146,7 +135,7 @@ Expected response:
 Example:
 
 ```bash
-curl http://localhost:8000/
+curl http://0.0.0.0:8000/
 ```
 
 - Query Recipes:
@@ -172,12 +161,12 @@ Response:
 Example:
 
 ```bash
-curl -X POST "http://localhost:8000/api/query" -H "Content-Type: application/json" -d '{"query": "What can I cook with chicken, rice, and broccoli?"}'
+curl -X POST "http://0.0.0.0:8000/api/query" -H "Content-Type: application/json" -d '{"query": "What can I cook with chicken, rice, and broccoli?"}'
 ```
 
 - Swagger UI:
 
-  - Access `http://localhost:8000/docs` for interactive testing of endpoints.
+  - Access `http://0.0.0.0:8000/docs` for interactive testing of endpoints.
 
 ## Project Structure
 

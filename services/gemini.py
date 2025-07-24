@@ -3,7 +3,7 @@ import json
 from typing import Dict
 from google import genai
 from dotenv import load_dotenv
-from fastapi import HTTPException
+from pydantic import BaseModel
 
 load_dotenv()
 
@@ -14,6 +14,15 @@ if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY not found in environment variables")
 
 client = genai.Client(api_key=GEMINI_API_KEY)
+
+
+class ErrorResponse(BaseModel):
+    """
+    Pydantic model for error response
+    """
+
+    error: str
+    status_code: int
 
 
 # Service function to interact with Gemini AI
@@ -44,17 +53,17 @@ def get_gemini_response(query: str) -> Dict:
         )
 
         if not response.text:
-            raise HTTPException(status_code=500, detail="Empty response from Gemini AI")
+            return ErrorResponse(error="Empty response from Gemini AI", status_code=500)
 
         try:
             result = json.loads(response.text.strip("```json\n```"))
 
         except json.JSONDecodeError:
-            raise HTTPException(
-                status_code=500, detail="Invalid JSON response from Gemini AI"
+            return ErrorResponse(
+                error="Invalid JSON response from Gemini AI", status_code=500
             )
 
         return result
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Gemini AI error: {str(e)}")
+        return ErrorResponse(error=f"Gemini AI error: {str(e)}", status_code=500)
